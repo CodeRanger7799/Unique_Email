@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
+
+public class EmailGen {
+	public static void main(String args[])
+	{
+		Scanner scr = new Scanner(System.in);
+		String first;
+		String last;
+		ArrayList<String> contactid = new ArrayList<String>();
+		while(true)
+		{
+			System.out.println("Enter the first name and last name(Enter null for ending)");
+			first = scr.next();
+			if(first.equals("null"))
+				break;
+			last = scr.next();
+			String email = last+"."+first+"@abc.com";
+			if(contactid.contains(email))
+			{
+				for(int i=1;i<1000;i++)
+				{
+					email = last+"."+first+i+"@abc.com";
+					if(!contactid.contains(email))
+					{
+						contactid.add(email);
+						break;
+					}
+				}
+			}
+			else
+				contactid.add(email);
+			
+		}
+		
+		Iterator itr = contactid.iterator();
+		while(itr.hasNext())
+		{
+			System.out.println(itr.next());
+		}
+		
+		scr.close();
+	}
+}
